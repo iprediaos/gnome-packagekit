@@ -9,6 +9,9 @@ Group:     Applications/System
 URL:       http://www.packagekit.org
 Source0:   http://download.gnome.org/sources/gnome-packagekit/2.91/%{name}-%{version}.tar.gz
 
+# already upstream
+Patch1:    0001-Only-use-the-window-title-if-the-user-set-a-parent-w.patch
+
 Requires:  gnome-icon-theme
 Requires:  gnome-settings-daemon
 Requires:  dbus-x11 >= 1.1.2
@@ -61,8 +64,8 @@ There are several utilities designed for installing, updating and
 removing packages on your system.
 
 %prep
-#%setup -q -n %{name}-%{version}-%{?alphatag}
 %setup -q
+%patch1 -p1 -b .no-crash-on-invalid-xid
 
 %build
 %configure --disable-scrollkeeper
@@ -127,6 +130,11 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/gnome-settings-daemon-3.0/gtk-modules/gpk-pk-gtk-module.desktop
 
 %changelog
+* Fri May 20 2011 Richard Hughes <rhughes@redhat.com> - 3.0.0-4
+- Add a back backported from upstream to avoid crashing if we're passed
+  an invalid window xid.
+- Resolves: #697294
+
 * Sat May 07 2011 Christopher Aillon <caillon@redhat.com> - 3.0.0-3
 - Update icon cache and gsettings scriptlets
 
