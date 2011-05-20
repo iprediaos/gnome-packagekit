@@ -3,7 +3,7 @@
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
 Version:   3.0.0
-Release:   3%{?dist}
+Release:   5%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
@@ -36,6 +36,7 @@ BuildRequires: dbus-glib-devel
 BuildRequires: libnotify-devel >= 0.7.0
 BuildRequires: gnome-panel-devel
 BuildRequires: scrollkeeper
+BuildRequires: docbook-utils
 BuildRequires: gnome-doc-utils >= 0.3.2
 BuildRequires: desktop-file-utils
 BuildRequires: gettext
@@ -130,6 +131,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/gnome-settings-daemon-3.0/gtk-modules/gpk-pk-gtk-module.desktop
 
 %changelog
+* Fri May 20 2011 Richard Hughes <rhughes@redhat.com> - 3.0.0-5
+- Add BR docbook-utils to fix build.
+
 * Fri May 20 2011 Richard Hughes <rhughes@redhat.com> - 3.0.0-4
 - Add a back backported from upstream to avoid crashing if we're passed
   an invalid window xid.
