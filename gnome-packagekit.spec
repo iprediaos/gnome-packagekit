@@ -2,15 +2,12 @@
 
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
-Version:   3.0.0
-Release:   5%{?dist}
+Version:   3.0.2
+Release:   1%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
 Source0:   http://download.gnome.org/sources/gnome-packagekit/2.91/%{name}-%{version}.tar.gz
-
-# already upstream
-Patch1:    0001-Only-use-the-window-title-if-the-user-set-a-parent-w.patch
 
 Requires:  gnome-icon-theme
 Requires:  gnome-settings-daemon
@@ -66,7 +63,6 @@ removing packages on your system.
 
 %prep
 %setup -q
-%patch1 -p1 -b .no-crash-on-invalid-xid
 
 %build
 %configure --disable-scrollkeeper
@@ -131,6 +127,10 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/gnome-settings-daemon-3.0/gtk-modules/gpk-pk-gtk-module.desktop
 
 %changelog
+* Mon May 23 2011 Richard Hughes <rhughes@redhat.com> - 3.0.2-1
+- New upstream version.
+- Various translation updates
+
 * Fri May 20 2011 Richard Hughes <rhughes@redhat.com> - 3.0.0-5
 - Add BR docbook-utils to fix build.
 
