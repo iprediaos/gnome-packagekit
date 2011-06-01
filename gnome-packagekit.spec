@@ -2,7 +2,7 @@
 
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
-Version:   3.0.2
+Version:   3.0.3
 Release:   1%{?dist}
 License:   GPLv2+
 Group:     Applications/System
@@ -127,6 +127,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/gnome-settings-daemon-3.0/gtk-modules/gpk-pk-gtk-module.desktop
 
 %changelog
+* Wed Jun 01 2011 Richard Hughes <rhughes@redhat.com> - 3.0.3-1
+- New upstream version.
+
 * Mon May 23 2011 Richard Hughes <rhughes@redhat.com> - 3.0.2-1
 - New upstream version.
 - Various translation updates
