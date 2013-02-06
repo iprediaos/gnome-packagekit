@@ -1,14 +1,11 @@
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
-Version:   3.6.1
-Release:   2%{?dist}
+Version:   3.7.5
+Release:   1%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
 Source0:   http://download.gnome.org/sources/gnome-packagekit/3.6/%{name}-%{version}.tar.xz
-
-# Already upstream
-Patch0:    0001-Don-t-crash-if-the-window-that-invoked-the-task-exit.patch
 
 Requires:  gnome-icon-theme
 Requires:  gnome-settings-daemon-updates
@@ -56,7 +53,6 @@ removing packages on your system.
 
 %prep
 %setup -q
-%patch0 -p1 -b .xid-crash
 
 %build
 %configure --enable-systemd
@@ -115,6 +111,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/GConf/gsettings/org.gnome.packagekit.gschema.migrate
 
 %changelog
+* Wed Feb 06 2013 Richard Hughes <rhughes@redhat.com> - 3.7.5-1
+- Update to 3.7.5
+
 * Wed Nov 28 2012 Richard Hughes <hughsient@gmail.com> - 3.6.1-2
 - Don't crash if the window that invoked the task exits before
   the task starts up.
@@ -680,7 +679,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 * Fri Dec 21 2007 Robin Norwood <rnorwood@redhat.com> - 0.1.5-1
 - Update to latest upstream version: 0.1.5
- 
+
 * Tue Nov 27 2007 Robin Norwood <rnorwood@redhat.com> - 0.1.4-1
 - Update to latest upstream version: 0.1.4
 
@@ -699,6 +698,6 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 * Tue Oct 16 2007 Robin Norwood <rnorwood@redhat.com> - 0.1.0-2
 - Apply recommended fixes from package review
- 
+
 * Mon Oct 15 2007 Robin Norwood <rnorwood@redhat.com> - 0.1.0-1
 - Initial build (based upon spec file from Richard Hughes)
