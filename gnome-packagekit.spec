@@ -26,7 +26,6 @@ BuildRequires: gtk3-devel
 BuildRequires: dbus-devel
 BuildRequires: dbus-glib-devel
 BuildRequires: libnotify-devel >= 0.7.0
-BuildRequires: gnome-panel-devel
 BuildRequires: desktop-file-utils
 BuildRequires: gettext
 BuildRequires: libtool
