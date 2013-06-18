@@ -1,11 +1,14 @@
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
 Version:   3.8.2
-Release:   1%{?dist}
+Release:   2%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
-Source0:   http://download.gnome.org/sources/gnome-packagekit/3.6/%{name}-%{version}.tar.xz
+Source0:   http://download.gnome.org/sources/gnome-packagekit/3.8/%{name}-%{version}.tar.xz
+
+# Upstream already
+Patch99: 0001-Ignore-package-progress-updates-when-the-transaction.patch
 
 Requires:  gnome-icon-theme
 Requires:  gnome-settings-daemon-updates
@@ -52,6 +55,7 @@ removing packages on your system.
 
 %prep
 %setup -q
+%patch99 -p1 -b .git
 
 %build
 %configure --enable-systemd
@@ -110,6 +114,11 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/GConf/gsettings/org.gnome.packagekit.gschema.migrate
 
 %changelog
+* Tue Jun 18 2013 Richard Hughes <rhughes@redhat.com> - 3.8.2-2
+- Ignore package progress updates when the transaction is being simulated which
+  fixes the 100% CPU issue when trying to update a large number of packages.
+- Resolves: #969852
+
 * Mon May 13 2013 Richard Hughes <rhughes@redhat.com> - 3.8.2-1
 - Update to 3.8.2
 
