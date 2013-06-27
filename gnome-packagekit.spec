@@ -1,11 +1,12 @@
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
 Version:   3.6.2
-Release:   1%{?dist}
+Release:   2%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
 Source0:   http://download.gnome.org/sources/gnome-packagekit/3.6/%{name}-%{version}.tar.xz
+Patch0:    0001-Ignore-package-progress-updates-when-the-transaction.patch
 
 Requires:  gnome-icon-theme
 Requires:  gnome-settings-daemon-updates
@@ -53,6 +54,7 @@ removing packages on your system.
 
 %prep
 %setup -q
+%patch0 -p1 -b .rh909761
 
 %build
 %configure --enable-systemd
@@ -111,6 +113,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/GConf/gsettings/org.gnome.packagekit.gschema.migrate
 
 %changelog
+* Thu Jun 27 2013 Adel Gadllah <adel.gadllah@gmail.com> - 3.6.2-2
+- Backport fix from F19 to fix #909761
+
 * Fri Mar 01 2013 Richard Hughes <rhughes@redhat.com> - 3.6.2-1
 - Update to 3.6.2
 
