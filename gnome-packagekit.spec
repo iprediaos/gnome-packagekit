@@ -1,7 +1,7 @@
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
-Version:   3.8.2
-Release:   2%{?dist}
+Version:   3.9.92
+Release:   1%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
@@ -92,6 +92,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %files -f %{name}.lang
 %doc AUTHORS COPYING NEWS README
 %{_bindir}/gpk-*
+%{_datadir}/appdata/
 %dir %{_datadir}/gnome-packagekit
 %{_datadir}/gnome-packagekit/gpk-*.ui
 %dir %{_datadir}/gnome-packagekit/icons
@@ -110,6 +111,10 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/GConf/gsettings/org.gnome.packagekit.gschema.migrate
 
 %changelog
+* Wed Sep 18 2013 Kalev Lember <kalevlember@gmail.com> - 3.9.92-1
+- Update to 3.9.92
+- Include the appdata files
+
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.8.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
