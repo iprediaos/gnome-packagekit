@@ -1,6 +1,6 @@
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
-Version:   3.9.92
+Version:   3.10.0
 Release:   1%{?dist}
 License:   GPLv2+
 Group:     Applications/System
@@ -111,6 +111,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/GConf/gsettings/org.gnome.packagekit.gschema.migrate
 
 %changelog
+* Wed Sep 25 2013 Kalev Lember <kalevlember@gmail.com> - 3.10.0-1
+- Update to 3.10.0
+
 * Wed Sep 18 2013 Kalev Lember <kalevlember@gmail.com> - 3.9.92-1
 - Update to 3.9.92
 - Include the appdata files
