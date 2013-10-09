@@ -1,11 +1,11 @@
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
 Version:   3.10.0
-Release:   1%{?dist}
+Release:   2%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
-Source0:   http://download.gnome.org/sources/gnome-packagekit/3.6/%{name}-%{version}.tar.xz
+Source0:   http://download.gnome.org/sources/gnome-packagekit/3.10/%{name}-%{version}.tar.xz
 
 Requires:  gnome-icon-theme
 Requires:  gnome-settings-daemon-updates
@@ -50,6 +50,22 @@ gnome-packagekit provides session applications for the PackageKit API.
 There are several utilities designed for installing, updating and
 removing packages on your system.
 
+%package installer
+Summary: PackageKit package installer
+Requires: %{name}%{?_isa} = %{version}-%{release}
+
+%description installer
+A graphical package installer for PackageKit which is used to manage software
+not shown in GNOME Software.
+
+%package updater
+Summary: PackageKit package updater
+Requires: %{name}%{?_isa} = %{version}-%{release}
+
+%description updater
+A graphical package updater for PackageKit which is used to update packages
+without rebooting.
+
 %prep
 %setup -q
 
@@ -91,10 +107,23 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 %files -f %{name}.lang
 %doc AUTHORS COPYING NEWS README
-%{_bindir}/gpk-*
-%{_datadir}/appdata/
+%{_bindir}/gpk-dbus-service
+%{_bindir}/gpk-distro-upgrade
+%{_bindir}/gpk-install-catalog
+%{_bindir}/gpk-install-local-file
+%{_bindir}/gpk-install-mime-type
+%{_bindir}/gpk-install-package-name
+%{_bindir}/gpk-install-provide-file
+%{_bindir}/gpk-log
+%{_bindir}/gpk-prefs
+%{_bindir}/gpk-service-pack
 %dir %{_datadir}/gnome-packagekit
-%{_datadir}/gnome-packagekit/gpk-*.ui
+%{_datadir}/gnome-packagekit/gpk-client.ui
+%{_datadir}/gnome-packagekit/gpk-error.ui
+%{_datadir}/gnome-packagekit/gpk-eula.ui
+%{_datadir}/gnome-packagekit/gpk-log.ui
+%{_datadir}/gnome-packagekit/gpk-prefs.ui
+%{_datadir}/gnome-packagekit/gpk-signature.ui
 %dir %{_datadir}/gnome-packagekit/icons
 %dir %{_datadir}/gnome-packagekit/icons/hicolor
 %dir %{_datadir}/gnome-packagekit/icons/hicolor/*
@@ -103,14 +132,49 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/gnome-packagekit/icons/hicolor/scalable/*/*.svg*
 %{_datadir}/icons/hicolor/*/*/*.png
 %{_datadir}/icons/hicolor/scalable/*/*.svg*
-%{_datadir}/man/man1/*.1.gz
+%{_datadir}/man/man1/gpk-dbus-service.1.gz
+%{_datadir}/man/man1/gpk-distro-upgrade.1.gz
+%{_datadir}/man/man1/gpk-install-catalog.1.gz
+%{_datadir}/man/man1/gpk-install-local-file.1.gz
+%{_datadir}/man/man1/gpk-install-mime-type.1.gz
+%{_datadir}/man/man1/gpk-install-package-name.1.gz
+%{_datadir}/man/man1/gpk-install-provide-file.1.gz
+%{_datadir}/man/man1/gpk-log.1.gz
+%{_datadir}/man/man1/gpk-prefs.1.gz
+%{_datadir}/man/man1/gpk-service-pack.1.gz
 %{python_sitelib}/packagekit/*py*
-%{_datadir}/applications/gpk-*.desktop
+%{_datadir}/applications/gpk-dbus-service.desktop
+%{_datadir}/applications/gpk-distro-upgrade.desktop
+%{_datadir}/applications/gpk-install-catalog.desktop
+%{_datadir}/applications/gpk-install-local-file.desktop
+%{_datadir}/applications/gpk-log.desktop
+%{_datadir}/applications/gpk-prefs.desktop
+%{_datadir}/applications/gpk-service-pack.desktop
 %{_datadir}/dbus-1/services/org.freedesktop.PackageKit.service
 %{_datadir}/glib-2.0/schemas/org.gnome.packagekit.gschema.xml
 %{_datadir}/GConf/gsettings/org.gnome.packagekit.gschema.migrate
+%{_datadir}/gnome-packagekit/gpk-service-pack.ui
+
+%files installer
+%defattr(-,root,root,-)
+%{_bindir}/gpk-application
+%{_datadir}/appdata/gpk-application.appdata.xml
+%{_datadir}/applications/gpk-application.desktop
+%{_datadir}/gnome-packagekit/gpk-application.ui
+%{_datadir}/man/man1/gpk-application.1.gz
+
+%files updater
+%defattr(-,root,root,-)
+%{_bindir}/gpk-update-viewer
+%{_datadir}/appdata/gpk-update-viewer.appdata.xml
+%{_datadir}/applications/gpk-update-viewer.desktop
+%{_datadir}/gnome-packagekit/gpk-update-viewer.ui
+%{_datadir}/man/man1/gpk-update-viewer.1.gz
 
 %changelog
+* Wed Oct 09 2013 Richard Hughes <rhughes@redhat.com> - 3.10.0-2
+- Split out the installer and updater into new subpackages.
+
 * Wed Sep 25 2013 Kalev Lember <kalevlember@gmail.com> - 3.10.0-1
 - Update to 3.10.0
 
