@@ -1,7 +1,7 @@
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
-Version:   3.10.0
-Release:   2%{?dist}
+Version:   3.10.1
+Release:   1%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
@@ -172,6 +172,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/man/man1/gpk-update-viewer.1.gz
 
 %changelog
+* Mon Oct 14 2013 Richard Hughes <rhughes@redhat.com> - 3.10.1-1
+- Update to 3.10.1
+
 * Wed Oct 09 2013 Richard Hughes <rhughes@redhat.com> - 3.10.0-2
 - Split out the installer and updater into new subpackages.
 
